@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import user from "../assets/usericon.png";
 
 
 export const CandidateView = () => {
 
-  const [candidate, setCandidate] = useState(JSON.parse(window.localStorage.getItem('candidate')) || [])
+  const candidate = JSON.parse(window.localStorage.getItem('candidate'))
 
-  console.log(candidate)
+  // useEffect(() => {
+  //   setCandidate(JSON.parse(window.localStorage.getItem('candidate')))
+  // }, [candidate])
+  // console.log(candidate)
   return (
     <div className="candi-view">
       <div className="container">
