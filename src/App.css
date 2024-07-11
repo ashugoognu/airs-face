@@ -81,3 +81,14 @@
   color: rgb(14, 108, 248);
   cursor: pointer;
 }
+
+
+.create-jd .modal-body .row{
+  display: flex;
+  row-gap: 20px;
+}
+
+.create-jd .modal-body .row .form-label{
+  font-weight: 500;
+  color: #006bc7;
+}

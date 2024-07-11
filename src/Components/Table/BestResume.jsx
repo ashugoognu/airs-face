@@ -1,10 +1,16 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
+import { useNavigate } from "react-router-dom";
 
 export const BestResume = ({ candiResume, loader }) => {
+  const navigate = useNavigate()
 
-  console.log('best resume', loader)
+  const handleResume = (item) => {
+    window.localStorage.setItem('pdf', `${item}`)
+    const name = getFileName(item)
+    navigate(`/candidate/${name}`)
+  }
 
   return (
     <Table bordered className="candi-table">
@@ -32,8 +38,12 @@ export const BestResume = ({ candiResume, loader }) => {
             <tbody>
               <tr>
                 <td> 1 </td>
-                <td className="name"> {candiResume.best_matching_resume}</td>
+                <td className="name" onClick={() => handleResume(candiResume.best_matching_resume)}> {candiResume.best_matching_resume}</td>
                 <td className="name"> {candiResume.matching_score}</td>
+              </tr>
+              <tr>
+                <td> 2 </td>
+                <td className="name" onClick={() => handleResume('../assets/mahima_agnihotri.pdf')}> resume </td>
               </tr>
             </tbody>
             :
@@ -42,3 +52,9 @@ export const BestResume = ({ candiResume, loader }) => {
     </Table >
   );
 };
+
+
+function getFileName(filePath) {
+  const parts = filePath.split('/');
+  return parts[parts.length - 1].split('.')[0];
+}

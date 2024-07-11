@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { JDTextArea } from "../Components/TextArea/JDTextArea";
-import { CandidateTable } from "../Components/Table/CandidateTable";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { ResumeTable } from "../Components/Table/ResumeTable";
 import { BestResume } from "../Components/Table/BestResume";
-// import { Document, Page, pdfjs } from "react-pdf";
-// import url from "/public/assets/resume.pdf";
+import { CreateJD } from "../Components/formAdd/CreateJD";
 
 export const Candidates = () => {
   // window.localStorage.clear()
@@ -16,7 +13,7 @@ export const Candidates = () => {
   const [loaders, setLoaders] = useState(false);
   const [candiDataa, setCandiDataa] = useState(JSON.parse(window.localStorage.getItem('candidates')) || [])
   const [candiResume, setCandiResume] = useState(JSON.parse(window.localStorage.getItem('candiResume')) || [])
-  // pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+  const [modalShow, setModalShow] = useState(false);
 
   const [jdValue, setJdValue] = useState({
     jd: ''
@@ -26,7 +23,7 @@ export const Candidates = () => {
     setLoader(true)
     var options = {
       method: 'POST',
-      url: 'http://127.0.0.1:8000/api/v1/filter-resumes/filter-resumes-from-jd-skillss',
+      url: `${process.env.REACT_APP_URL}/api/v1/filter-resumes/filter-resumes-from-jd-skillss`,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -44,20 +41,17 @@ export const Candidates = () => {
     });
   }
 
-  console.log(window.localStorage.getItem('candidates'))
-
   const findBestResume = async () => {
     setLoaders(true)
     var options2 = {
       method: 'GET',
-      url: 'http://127.0.0.1:8000/api/v1/match-resumes/get-most-suitable-jd-matching-resume',
+      url: `${process.env.REACT_APP_URL}/api/v1/match-resumes/get-most-suitable-jd-matching-resume`,
       headers: {
         'Content-Type': 'application/json'
       },
     };
 
     await axios.request(options2).then(function (res) {
-      console.log(res.data)
       setCandiResume(res.data)
       setLoaders(false)
       window.localStorage.setItem('candiResume', JSON.stringify(res.data))
@@ -67,16 +61,25 @@ export const Candidates = () => {
     })
   }
 
-  // useEffect(() => {
-  //   findBestResume();
-  // },[])
-
   useEffect(() => {
     setCandiDataa(JSON.parse(window.localStorage.getItem('candidates')))
+    setCandiResume(JSON.parse(window.localStorage.getItem('candiResume')))
   }, [])
 
   return (
     <div className="m-4">
+      <div className="top d-flex" style={{ justifyContent: 'space-between' }}>
+        <div style={{ width: '80%' }}>
+          <h2 style={{ textAlign: 'center', marginBottom: '50px' }}> Find Best Resumes </h2>
+        </div>
+        <button className="btn btn-primary" onClick={() => setModalShow(true)} style={{ height: 'fit-content' }} > Create JD </button>
+        <CreateJD
+          show={modalShow}
+          setLoaders={setLoaders}
+          setCandiResume={setCandiResume}
+          onHide={() => setModalShow(false)}
+        />
+      </div>
       <div className="d-flex align-items-center w-100 gap-3 mb-3">
         <FloatingLabel controlId="floatingTextarea2" label="Job Description" style={{ width: '60%' }}>
           <Form.Control
@@ -87,21 +90,17 @@ export const Candidates = () => {
             onChange={(e) => setJdValue(prev => ({ ...prev, jd: e.target.value }))}
           />
         </FloatingLabel>
+        <span style={{ color: '#000000', fontWeight: 'bold' }}> OR </span>
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label style={{ fontWeight: '500' }}> Upload your Job Description </Form.Label>
+          <Form.Control type="file" />
+        </Form.Group>
         <Button variant="primary" onClick={() => handleJdCandidates()}>Find</Button>
       </div>
-
-      {/* <div style={{ width: '100%', height: '100vh' }}>
-        <embed
-          src={url}
-          type="application/pdf"
-          width="100%"
-          height="100%"
-        />
-      </div> */}
-      {/* <CandidateTable candiData={candiDataa} /> */}
+      <h3>Filtered Resumes</h3>
       <ResumeTable loader={loader} candiResume={candiDataa} />
       <br />
-      <h2> Best Resume </h2>
+      <h3> Best Resume </h3>
       <BestResume loader={loaders} candiResume={candiResume} />
     </div>
   );
