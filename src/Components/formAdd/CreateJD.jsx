@@ -46,6 +46,7 @@ export const CreateJD = ({ setCandiResume, setLoaders, ...props }) => {
     axios.request(config)
       .then((response) => {
         setLoaders(false)
+        console.log(response.data)
         setCandiResume(response.data)
         window.localStorage.setItem('candiResume', JSON.stringify(response.data))
         return;

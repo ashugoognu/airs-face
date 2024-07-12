@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from "react-router-dom";
@@ -38,8 +38,8 @@ export const BestResume = ({ candiResume, loader }) => {
             <tbody>
               <tr>
                 <td> 1 </td>
-                <td className="name" onClick={() => handleResume(candiResume.best_matching_resume)}> {candiResume.best_matching_resume}</td>
-                <td className="name"> {candiResume.matching_score}</td>
+                <td className="name" onClick={() => handleResume(`${process.env.REACT_APP_URL}/attachments/${candiResume.best_matching_resume}`)}> {candiResume.best_matching_resume}</td>
+                <td> {candiResume.matching_score}</td>
               </tr>
               <tr>
                 <td> 2 </td>
