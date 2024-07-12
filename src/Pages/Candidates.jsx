@@ -31,7 +31,6 @@ export const Candidates = () => {
     };
 
     axios.request(options).then(function (response) {
-      console.log(response.data)
       setCandiDataa(response.data)
       findBestResume()
       setLoader(false)
