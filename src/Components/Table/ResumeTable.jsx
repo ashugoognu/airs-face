@@ -39,10 +39,11 @@ export const ResumeTable = ({ candiResume, loader }) => {
                 candiResume.map((item, i) => {
                   const path = item.replace(/\\/g, '/')
                   const resume = path.split('/')[1]
+                  const url = window.location.protocol + '//' + window.location.host + '/' + path
                   return (
                     <tr key={i}>
                       <td> {i + 1} </td>
-                      <td className="name" onClick={() => handleResume(`${process.env.REACT_APP_URL}/${path}`)}> {resume}</td>
+                      <td className="name" onClick={() => handleResume(url)}> {resume}</td>
                     </tr>
                   )
                 })

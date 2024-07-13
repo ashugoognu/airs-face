@@ -7,7 +7,8 @@ export const BestResume = ({ candiResume, loader }) => {
   const navigate = useNavigate()
 
   const handleResume = (item) => {
-    window.localStorage.setItem('pdf', `${item}`)
+    const url = window.location.protocol + '//' + window.location.host + '/attachments' + item
+    window.localStorage.setItem('pdf', `${url}`)
     const name = getFileName(item)
     navigate(`/candidate/${name}`)
   }
