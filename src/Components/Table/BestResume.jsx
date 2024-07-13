@@ -50,6 +50,8 @@ export const BestResume = ({ candiResume, loader }) => {
             :
             <></>
       }
+
+      
     </Table >
   );
 };
