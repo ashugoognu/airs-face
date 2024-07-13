@@ -15,7 +15,7 @@ export const ResumeTable = ({ candiResume, loader }) => {
 
   const handleResume = (fileUrl) => {
     const path = fileUrl.replace(/\\/g, '/');
-    const newUrl = window.location.protocol + '//' + window.location.host + '/' + path;
+    const newUrl = `${process.env.REACT_APP_URL}` + '/' + path;
     setPdfUrl(newUrl);
     console.log(newUrl)
     handleShow();
