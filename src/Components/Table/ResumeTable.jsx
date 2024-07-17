@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
-// import { redirect, useNavigate } from "react-router-dom";
-// import Modal from 'react-bootstrap/Modal';
 
 export const ResumeTable = ({ candiResume, loader }) => {
 
   const handleResume = (fileUrl) => {
     const path = fileUrl.replace(/\\/g, '/');
-    const newUrl = `${process.env.REACT_APP_URL}` + '/media/' + path;
+    const newUrl = `${process.env.REACT_APP_URL}` + '/' + path;
     window.open(newUrl, '_blank')
   }
-
   return (
     <>
       <Table bordered className="candi-table">
@@ -33,16 +30,14 @@ export const ResumeTable = ({ candiResume, loader }) => {
               </tr>
             </tbody>
             :
-            candiResume !== null ?
+            candiResume.length !== 0 ?
               <tbody>
                 {
-                  candiResume.map((item, i) => {
-                    const path = item.replace(/\\/g, '/');
-                    const resume = path.split('/').pop();
+                  candiResume.filtered_resumes.map((item, i) => {
                     return (
                       <tr key={i}>
                         <td>{i + 1}</td>
-                        <td className="name" onClick={() => handleResume(path)}>{resume}</td>
+                        <td className="name" onClick={() => handleResume(item)}>{item}</td>
                       </tr>
                     );
                   })
@@ -52,24 +47,6 @@ export const ResumeTable = ({ candiResume, loader }) => {
               <></>
         }
       </Table>
-      {/* <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>Resume</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <embed
-            src='https://api-airs.hiringgo.com/media/upload_jd/job_description/job_details.pdf'
-            type="application/pdf"
-            width="100%"
-            height="600px"
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
     </>
   );
 };
