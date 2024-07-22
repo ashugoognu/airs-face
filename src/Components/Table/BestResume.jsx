@@ -12,6 +12,10 @@ export const BestResume = ({ candiResume, loader }) => {
     window.open(newUrl, '_blank')
   }
 
+  const resume = JSON.parse(window.localStorage.getItem('resume'))
+
+  console.log(resume.result)
+
   return (
     <Table bordered className="candi-table">
       <thead>
@@ -21,7 +25,6 @@ export const BestResume = ({ candiResume, loader }) => {
           <th>Score</th>
         </tr>
       </thead>
-
       {
         loader ?
           <tbody>
@@ -34,36 +37,14 @@ export const BestResume = ({ candiResume, loader }) => {
             </tr>
           </tbody>
           :
-          candiResume !== null ?
-            <tbody>
-              <tr>
-                <td> 1 </td>
-                <td className="name" onClick={() => handleResume(`${candiResume.best_matching_resume}`)}> {candiResume.best_matching_resume}</td>
-                <td> {candiResume.matching_score}</td>
-              </tr>
-            </tbody>
-            :
-            <></>
+          <tbody>
+            <tr>
+              <td> 1 </td>
+              <td className="name" onClick={() => handleResume(`${candiResume.best_matching_resume}`)}> {candiResume.best_matching_resume}</td>
+              <td> {candiResume.matching_score}</td>
+            </tr>
+          </tbody>
       }
-
-      {/* <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>Resume</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <embed
-            src={pdfUrl}
-            type="application/pdf"
-            width="100%"
-            height="600px"
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
     </Table >
   );
 };

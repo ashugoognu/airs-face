@@ -8,6 +8,7 @@ import { ResumeTable } from "../Components/Table/ResumeTable";
 export const Candidates = () => {
   const [loader, setLoader] = useState(false);
   const [candiData, setCandiData] = useState([])
+  const [candiResume, setCandiResume] = useState([])
 
   const [jdValue, setJdValue] = useState({
     jd: ''
@@ -27,6 +28,7 @@ export const Candidates = () => {
     axios.request(options).then(function (response) {
       setCandiData(response.data)
       setLoader(false)
+      setCandiResume(response.data.resumes_with_match_score)
     }).catch(function (error) {
       console.error(error);
     });
@@ -38,7 +40,6 @@ export const Candidates = () => {
         <div style={{ width: '80%' }}>
           <h2 style={{ textAlign: 'center', marginBottom: '50px' }}> Find Best Resumes </h2>
         </div>
-        
       </div>
       <div className="d-flex align-items-center w-100 gap-3 mb-3">
         <FloatingLabel controlId="floatingTextarea2" label="Job Description" style={{ width: '60%' }}>
@@ -58,7 +59,7 @@ export const Candidates = () => {
         <Button variant="primary" onClick={() => handleJdCandidates()}>Find</Button>
       </div>
       <h3>Filtered Resumes</h3>
-      <ResumeTable loader={loader} candiResume={candiData} />
+      <ResumeTable loader={loader} candiResume={candiData} resume={candiResume} />
     </div>
   );
 };
