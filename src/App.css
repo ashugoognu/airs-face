@@ -1,3 +1,84 @@
+/* header section */
+.header{
+  padding: 20px 0;
+}
+
+.header .container img{
+  width: 180px;
+}
+
+/* candidate view  */
+.candidate-resume .candidate-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.candidate-resume .candidate-header h2{
+  text-align: center; 
+  margin-bottom: 50px;
+  font-size: 45px;
+  color: #006DB8;
+  font-weight: 600;
+}
+
+.candidate-resume .jd-text-fields{
+  height: 90px;
+  background: #FFFFFF;
+  box-shadow: 0px 1.09559px 16.7625px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  position: relative;
+  z-index: 99;
+  position: absolute;
+  width: 92% !important;
+}
+
+.candidate-resume .jd-text-fields #floatingTextarea2{
+  height: 90px;
+  border: none;
+  border-radius: 20px;
+}
+
+.form-control:focus{
+  box-shadow: none !important;
+}
+
+.candidate-resume .jd-text-fields .form-floating{
+  width: 74%;
+}
+
+.candidate-resume .jd-text-fields .jd-upload-file{
+  width: 207px;
+  height: 48px;
+  background: #DAEAF3;
+  border-radius: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  gap: 10px;
+}
+.candidate-resume .jd-text-fields .jd-upload-file img{
+  width: 23px;
+}
+.candidate-resume .jd-text-fields .jd-upload-file input{
+  display: none;
+}
+
+.candidate-resume .jd-text-fields .jd-upload-file label{
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  height: 23px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.candidate-resume .jd-text-fields .find-btn img{
+  width: 30px;
+}
+
 .candi-view .container .row .col-6{
   padding: 10px;
 }
@@ -91,4 +172,144 @@
 .create-jd .modal-body .row .form-label{
   font-weight: 500;
   color: #006bc7;
+}
+
+
+.filtered-resume{
+  width: 100%;
+  background-color: #006bc7;
+  padding: 120px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.filtered-resume .card{
+  padding: 20px 25px;
+  border-radius: 14px;
+}
+
+.filtered-resume .card .top-details{
+  display: flex;
+  align-items: center;
+}
+
+.filtered-resume .card .top-details .left{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: 20%;
+}
+
+.filtered-resume .card .top-details .left h3{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.filtered-resume .card .top-details .right{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.filtered-resume .card .top-details .right span{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+}
+
+.filtered-resume .card .top-details .right .email{
+  display: flex;
+  align-items: center;
+}
+
+.filtered-resume .card .top-details img{
+  width: 17px;
+  height: 17px;
+}
+
+.filtered-resume .card .top-details .right > div{
+  display: flex;
+  gap: 30px;
+}
+
+.filtered-resume .card .top-details .right .btn{
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.filtered-resume .card .bottom-details{
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filtered-resume .card .bottom-details .skill{
+  display: flex;
+  flex-direction: row;
+}
+
+.filtered-resume .card .bottom-details .skill div:first-child{
+  width: 20%;
+}
+.filtered-resume .card .bottom-details .skill .skills{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtered-resume .card .bottom-details .skill .skills span{
+  padding: 3px 10px;
+  background-color: #BCD9E88C;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.filtered-resume .card .bottom-details .skill span{
+  font-size: 13px;
+}
+
+.filtered-resume .card .bottom-details .skill .left-title span{
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.filtered-resume .view-more{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+}
+
+.filtered-resume .view-more .btn{
+  background-color: #fff;
+  border-radius: 14px;
+  color: #006AAE;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 7px 10px;
+}
+
+.filtered-resume .card .empty-string{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.filtered-resume .card .empty-string img{
+  width: 130px;
+}
+
+.filtered-resume .card .empty-string h4{
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.filtered-resume .card .empty-string p{
+  font-weight: 400;
 }

@@ -1,24 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './App.css';
+import 'react-loading-skeleton/dist/skeleton.css'
 import { Candidates } from "./Pages/Candidates";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PDFViewer from "./Components/pdfViewer/PdfViewer";
-// import WebSocketService from "./websocketService";
+import { Header } from "./Components/header/Header";
 
 function App() {
 
-  // useEffect(() => {
-  //   const wsService = new WebSocketService('wss://airs.hiringgo.com:3000/ws');
-  //   console.log(wsService.socket)
-  //   return () => {
-  //     if (wsService.socket) {
-  //       wsService.socket.close();
-  //     }
-  //   };
-  // }, []);
-
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Candidates />} />
         <Route path="/candidate/:name" element={<PDFViewer />} />
