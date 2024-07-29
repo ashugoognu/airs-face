@@ -252,10 +252,11 @@
   flex-direction: row;
 }
 
-.filtered-resume .card .bottom-details .skill div:first-child{
+.filtered-resume .card .bottom-details .skill .left-title{
   width: 20%;
 }
 .filtered-resume .card .bottom-details .skill .skills{
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
