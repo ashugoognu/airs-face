@@ -240,6 +240,10 @@
   font-size: 16px;
 }
 
+.filtered-resume .card .top-details .right .btn:hover{
+  color: #006AAE;
+}
+
 .filtered-resume .card .bottom-details{
   padding: 10px 0;
   display: flex;
