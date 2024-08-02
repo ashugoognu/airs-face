@@ -26,7 +26,6 @@ export const CreateJD = ({ setCandiResume, setLoaders, ...props }) => {
     props.onHide()
     try {
       await axios.post(`${process.env.REACT_APP_URL}/api/v1/upload-jd/get-job-details`, input).then((res) => {
-        console.log(res.data)
         getBestResume()
       })
     } catch (error) {
@@ -46,7 +45,6 @@ export const CreateJD = ({ setCandiResume, setLoaders, ...props }) => {
     axios.request(config)
       .then((response) => {
         setLoaders(false)
-        console.log(response.data)
         setCandiResume(response.data)
         window.localStorage.setItem('candiResume', JSON.stringify(response.data))
         return;

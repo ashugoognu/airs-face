@@ -318,3 +318,18 @@
 .filtered-resume .card .empty-string p{
   font-weight: 400;
 }
+
+.modal-title.resume-title{
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.modal-title.resume-title img{
+  width: 25px;
+  height: fit-content;
+  color: #006AAE;
+  cursor: pointer;
+}

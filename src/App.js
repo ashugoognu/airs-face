@@ -7,13 +7,14 @@ import PDFViewer from "./Components/pdfViewer/PdfViewer";
 import { Header } from "./Components/header/Header";
 
 function App() {
+  const pdfUrl = 'https://api-airs.hiringgo.com/media/attachments/CA%20Deepak%20Resume.pdf';
 
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<Candidates />} />
-        <Route path="/candidate/:name" element={<PDFViewer />} />
+        {/* <Route path="/testing" element={<PDFViewer fileUrl={pdfUrl} />} /> */}
       </Routes>
     </Router>
   );

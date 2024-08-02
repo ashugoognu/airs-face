@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import email from "../../assets/email.png";
 import call from "../../assets/call.png";
 import next from "../../assets/next-icon.png";
 import { BASE_URL } from "../../config";
 
+import Modal from "react-bootstrap/Modal";
+import FileViewer from "../pdfViewer/PdfViewer";
+
 export const ResumeCard = ({ item }) => {
+  const [fullscreen, setFullscreen] = useState(true);
+  const [show, setShow] = useState(false);
+  const [url, setUrl] = useState();
+
   const handleResume = (fileUrl) => {
-    console.log(fileUrl.filepath);
     const newUrl = `${BASE_URL}` + "/" + fileUrl.filepath;
-    window.open(newUrl, "_blank");
+    setUrl(newUrl);
+    setFullscreen(true);
+    setShow(true);
   };
+
 
   return (
     <div className="card">
@@ -70,6 +79,9 @@ export const ResumeCard = ({ item }) => {
           </div>
         </div>
       </div>
+      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+        <FileViewer fileUrl={url} />
+      </Modal>
     </div>
   );
 };

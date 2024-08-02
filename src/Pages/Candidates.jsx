@@ -8,6 +8,8 @@ import docs from "../assets/document.png";
 import Skeleton from "react-loading-skeleton";
 import { ResumeCard } from "../Components/ResumeCards/ResumeCard";
 import { BASE_URL } from "../config";
+import PDFViewer from "../Components/pdfViewer/PdfViewer";
+import DOCXViewer from "../Components/pdfViewer/DocsViewer";
 
 export const Candidates = () => {
   const [loader, setLoader] = useState(false);

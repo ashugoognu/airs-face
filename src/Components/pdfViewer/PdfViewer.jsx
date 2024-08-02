@@ -1,14 +1,74 @@
-import React from 'react';
+import React, { useEffect, useRef } from "react";
+import { renderAsync } from "docx-preview";
+import download from "../../assets/download1.png";
 
-const PDFViewer = () => {
+import Modal from "react-bootstrap/Modal";
 
-  const url = window.localStorage.getItem('pdf')
-  console.log(url)
-  return (
-    <div style={{ height: '100vh', overflow: 'hidden' }}>
-      <embed src="https://api-airs.hiringgo.com/media/attachments/JEGEDE%20ATS%20RESUME.pdf" type="application/pdf" width="100%" height='100%' />
-    </div>
-  )
+const FileViewer = ({ fileUrl }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const renderDocx = async () => {
+      if (fileUrl.endsWith(".docx")) {
+        const response = await fetch(fileUrl);
+        const blob = await response.blob();
+        await renderAsync(blob, containerRef.current);
+      }
+    };
+
+    renderDocx();
+  }, [fileUrl]);
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = fileUrl;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return fileUrl.endsWith(".pdf") ? (
+    <>
+      <Modal.Header closeButton>
+        <Modal.Title className="resume-title">
+          Candidate Resume
+          <img
+            src={download}
+            alt="download"
+            title="Download Resume"
+            onClick={handleDownload}
+          />
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <iframe
+          src={fileUrl}
+          width="100%"
+          height="100%"
+          style={{ border: "none", minHeight: "100vh" }}
+          title="File Viewer"
+        />
+      </Modal.Body>
+    </>
+  ) : (
+    <>
+      <Modal.Header closeButton>
+        <Modal.Title className="resume-title">
+          Candidate Resume
+          <img
+            src={download}
+            alt="download"
+            title="Download Resume"
+            onClick={handleDownload}
+          />
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div ref={containerRef} style={{ width: "100%", height: "100vh" }} />
+      </Modal.Body>
+    </>
+  );
 };
 
-export default PDFViewer;
+export default FileViewer;

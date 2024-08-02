@@ -6,10 +6,6 @@ export const CandidateView = () => {
 
   const candidate = JSON.parse(window.localStorage.getItem('candidate'))
 
-  // useEffect(() => {
-  //   setCandidate(JSON.parse(window.localStorage.getItem('candidate')))
-  // }, [candidate])
-  // console.log(candidate)
   return (
     <div className="candi-view">
       <div className="container">

@@ -14,8 +14,6 @@ export const BestResume = ({ candiResume, loader }) => {
 
   const resume = JSON.parse(window.localStorage.getItem('resume'))
 
-  console.log(resume.result)
-
   return (
     <Table bordered className="candi-table">
       <thead>
