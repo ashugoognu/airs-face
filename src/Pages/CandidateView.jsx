@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import user from "../assets/usericon.png";
-
 
 export const CandidateView = () => {
 
