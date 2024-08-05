@@ -264,6 +264,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  justify-content: space-between;
+}
+
+.filtered-resume .card .bottom-details .skill .skills::after {
+  content: "";
+  flex: auto;
 }
 
 .filtered-resume .card .bottom-details .skill .skills span{

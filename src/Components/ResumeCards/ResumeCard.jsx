@@ -14,11 +14,14 @@ export const ResumeCard = ({ item }) => {
 
   const handleResume = (fileUrl) => {
     const newUrl = `${BASE_URL}` + "/" + fileUrl.filepath;
-    setUrl(newUrl);
-    setFullscreen(true);
-    setShow(true);
+    if (newUrl.endsWith(".pdf")) {
+      window.open(newUrl, "_blank");
+    } else {
+      setUrl(newUrl);
+      setFullscreen(true);
+      setShow(true);
+    }
   };
-
 
   return (
     <div className="card">

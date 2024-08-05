@@ -14,6 +14,7 @@ const FileViewer = ({ fileUrl }) => {
         const blob = await response.blob();
         await renderAsync(blob, containerRef.current);
       }
+      
     };
 
     renderDocx();
