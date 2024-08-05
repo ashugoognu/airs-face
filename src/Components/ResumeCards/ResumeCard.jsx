@@ -75,7 +75,7 @@ export const ResumeCard = ({ item }) => {
         </div> */}
         <div className="skill">
           <div className="left-title">
-            <span>MATCHING SCOPE</span>
+            <span>MATCHING SCORE</span>
           </div>
           <div>
             <span>{item.match_score ? item.match_score.toFixed(2) : 0}%</span>
