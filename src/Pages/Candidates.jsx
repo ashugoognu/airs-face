@@ -14,6 +14,9 @@ export const Candidates = () => {
   const [count, setCount] = useState(4);
   const [candiData, setCandiData] = useState([]);
   const lableRef = useRef();
+  const sortedCandiData = candiData
+    ? [...candiData].sort((a, b) => b.match_score - a.match_score)
+    : [];
 
   const [jdValue, setJdValue] = useState({
     jd: "",
@@ -100,7 +103,7 @@ export const Candidates = () => {
             <Skeleton count={2} />
           </div>
         ) : candiData.length > 0 ? (
-          candiData.map((item, i) => {
+          sortedCandiData.map((item, i) => {
             if (i < count) {
               return <ResumeCard item={item} key={i} />;
             }
