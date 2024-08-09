@@ -116,13 +116,10 @@ export const Candidates = () => {
         )}
         {candiData.length > 4 && (
           <div
-            className={`${
-              candiData.length === count ? "d-none" : ""
-            } view-more`}
+            className={`${candiData.length <= count ? "d-none" : ""} view-more`}
           >
-            <button className="btn" onClick={() => setCount(candiData.length)}>
-              {" "}
-              Load more results...{" "}
+            <button className="btn" onClick={() => setCount(count + 4)}>
+              Load more results...
             </button>
           </div>
         )}
