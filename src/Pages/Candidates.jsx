@@ -32,7 +32,6 @@ export const Candidates = () => {
       const response = await axios.post(`${BASE_URL}/api/v1/filter-resumes/filter-resumes-from-jd-skillss`, formData);
       setCandiData(response.data);
       setLoader(false);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
       setLoader(false);
