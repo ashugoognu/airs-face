@@ -14,34 +14,29 @@ export const Candidates = () => {
   const [count, setCount] = useState(4);
   const [candiData, setCandiData] = useState([]);
   const lableRef = useRef();
-  const sortedCandiData = candiData
-    ? [...candiData].sort((a, b) => b.match_score - a.match_score)
-    : [];
-
+  
+  const sortedCandiData = candiData.sort((a, b) => b.match_score - a.match_score);
+  
   const [jdValue, setJdValue] = useState({
     jd: "",
+    filepath: "",
   });
 
   const handleJdCandidates = async () => {
     setLoader(true);
-    var options = {
-      method: "POST",
-      url: `${BASE_URL}/api/v1/filter-resumes/filter-resumes-from-jd-skillss`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: jdValue,
-    };
+    const formData = new FormData();
+    formData.append("filepath", jdValue.filepath);
+    formData.append("jd", jdValue.jd);
 
-    axios
-      .request(options)
-      .then(function (response) {
-        setCandiData(response.data);
-        setLoader(false);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    try {
+      const response = await axios.post(`${BASE_URL}/api/v1/filter-resumes/filter-resumes-from-jd-skillss`, formData);
+      setCandiData(response.data);
+      setLoader(false);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+      setLoader(false);
+    }
   };
 
   const handleFile = (e) => {
@@ -49,6 +44,7 @@ export const Candidates = () => {
     if (file) {
       lableRef.current.innerText = file.name;
     }
+    setJdValue((prev) => ({ ...prev, filepath: file }));
   };
 
   return (
@@ -77,7 +73,7 @@ export const Candidates = () => {
             <Form.Label ref={lableRef}> Upload File</Form.Label>
             <Form.Control type="file" onChange={handleFile} />
           </Form.Group>
-          <button className="find-btn btn" onClick={() => handleJdCandidates()}>
+          <button className="find-btn btn" onClick={handleJdCandidates}>
             <img src={search} alt="search icon" />
           </button>
         </div>
@@ -85,13 +81,7 @@ export const Candidates = () => {
       <div className="filtered-resume">
         {loader ? (
           <div className="card d-flex gap-2">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
+            <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
               <div style={{ flex: "0 0 50%" }}>
                 <Skeleton width="100%" />
               </div>
@@ -105,8 +95,9 @@ export const Candidates = () => {
         ) : candiData.length > 0 ? (
           sortedCandiData.map((item, i) => {
             if (i < count) {
-              return <ResumeCard item={item} key={i} />;
+              return <ResumeCard item={item} key={item.id || i} />;
             }
+            return null;
           })
         ) : (
           <div className="card">
@@ -118,9 +109,7 @@ export const Candidates = () => {
           </div>
         )}
         {candiData.length > 4 && (
-          <div
-            className={`${candiData.length <= count ? "d-none" : ""} view-more`}
-          >
+          <div className={`${candiData.length <= count ? "d-none" : ""} view-more`}>
             <button className="btn" onClick={() => setCount(count + 4)}>
               Load more results...
             </button>
