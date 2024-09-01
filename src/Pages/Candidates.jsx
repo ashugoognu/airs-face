@@ -4,6 +4,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import upload from "../assets/uploadicon.png";
 import search from "../assets/searchicon.png";
+import next from "../assets/nexticon.png";
 import docs from "../assets/document.png";
 import Skeleton from "react-loading-skeleton";
 import { ResumeCard } from "../Components/ResumeCards/ResumeCard";
@@ -12,25 +13,37 @@ import { BASE_URL } from "../config";
 export const Candidates = () => {
   const [loader, setLoader] = useState(false);
   const [count, setCount] = useState(4);
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState();
   const [candiData, setCandiData] = useState([]);
   const lableRef = useRef();
-  
-  const sortedCandiData = candiData.sort((a, b) => b.match_score - a.match_score);
-  
+
+  const sortedCandiData = candiData.sort(
+    (a, b) => b.match_score - a.match_score
+  );
+
   const [jdValue, setJdValue] = useState({
     jd: "",
     filepath: "",
   });
 
-  const handleJdCandidates = async () => {
+  const handleJdCandidates = async (pageNo) => {
+    setPage(pageNo);
+    setCount(4);
     setLoader(true);
     const formData = new FormData();
     formData.append("filepath", jdValue.filepath);
     formData.append("jd", jdValue.jd);
+    formData.append("page", pageNo);
 
     try {
-      const response = await axios.post(`${BASE_URL}/api/v1/filter-resumes/filter-resumes-from-jd-skillss`, formData);
-      setCandiData(response.data);
+      const response = await axios.post(
+        `${BASE_URL}/api/v1/filter-resumes/filter-resumes-from-jd-skillss`,
+        formData
+      );
+      setCandiData(response.data.results);
+      setPagination(response.data.pagination);
+      console.log(response.data.pagination);
       setLoader(false);
     } catch (error) {
       console.error(error);
@@ -72,7 +85,10 @@ export const Candidates = () => {
             <Form.Label ref={lableRef}> Upload File</Form.Label>
             <Form.Control type="file" onChange={handleFile} />
           </Form.Group>
-          <button className="find-btn btn" onClick={handleJdCandidates}>
+          <button
+            className="find-btn btn"
+            onClick={() => handleJdCandidates(page)}
+          >
             <img src={search} alt="search icon" />
           </button>
         </div>
@@ -80,7 +96,13 @@ export const Candidates = () => {
       <div className="filtered-resume">
         {loader ? (
           <div className="card d-flex gap-2">
-            <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
               <div style={{ flex: "0 0 50%" }}>
                 <Skeleton width="100%" />
               </div>
@@ -108,10 +130,43 @@ export const Candidates = () => {
           </div>
         )}
         {candiData.length > 4 && (
-          <div className={`${candiData.length <= count ? "d-none" : ""} view-more`}>
+          <div
+            className={`${candiData.length <= count ? "d-none" : ""} view-more`}
+          >
             <button className="btn" onClick={() => setCount(count + 4)}>
               Load more results...
             </button>
+          </div>
+        )}
+        {pagination && (
+          <div className="pagination">
+            <div className="container">
+              <div className="prev">
+                <button className={`btn ${page > 1 ? "" : "disabled"}`}
+                  onClick={() => {
+                    handleJdCandidates(page - 1);
+                  }}
+                >
+                  <img src={next} alt="next icon" />
+                  <img src={next} alt="next icon" />
+                  Prev
+                </button>
+              </div>
+              <span>
+                {page} / {pagination.total_pages}
+              </span>
+              <div className="next">
+                <button className={`btn ${page === pagination.total_pages ? "disabled" : ""}`}
+                  onClick={() => {
+                    handleJdCandidates(page + 1);
+                  }}
+                >
+                  Next
+                  <img src={next} alt="next icon" />
+                  <img src={next} alt="next icon" />
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>
