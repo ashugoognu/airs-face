@@ -114,10 +114,7 @@ export const Candidates = () => {
           </div>
         ) : candiData.length > 0 ? (
           sortedCandiData.map((item, i) => {
-            if (i < count) {
-              return <ResumeCard item={item} key={item.id || i} />;
-            }
-            return null;
+            return <ResumeCard item={item} key={item.id || i} />;
           })
         ) : (
           <div className="card">
@@ -128,7 +125,7 @@ export const Candidates = () => {
             </div>
           </div>
         )}
-        {candiData.length > 4 && (
+        {/* {candiData.length > 4 && (
           <div
             className={`${candiData.length <= count ? "d-none" : ""} view-more`}
           >
@@ -136,12 +133,13 @@ export const Candidates = () => {
               Load more results...
             </button>
           </div>
-        )}
+        )} */}
         {pagination && (
           <div className="pagination">
             <div className="container">
               <div className="prev">
-                <button className={`btn ${page > 1 ? "" : "disabled"}`}
+                <button
+                  className={`btn ${page > 1 ? "" : "disabled"}`}
                   onClick={() => {
                     handleJdCandidates(page - 1);
                   }}
@@ -155,7 +153,10 @@ export const Candidates = () => {
                 {page} / {pagination.total_pages}
               </span>
               <div className="next">
-                <button className={`btn ${page === pagination.total_pages ? "disabled" : ""}`}
+                <button
+                  className={`btn ${
+                    page === pagination.total_pages ? "disabled" : ""
+                  }`}
                   onClick={() => {
                     handleJdCandidates(page + 1);
                   }}
