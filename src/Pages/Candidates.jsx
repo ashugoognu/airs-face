@@ -43,7 +43,6 @@ export const Candidates = () => {
       );
       setCandiData(response.data.results);
       setPagination(response.data.pagination);
-      console.log(response.data.pagination);
       setLoader(false);
     } catch (error) {
       console.error(error);
