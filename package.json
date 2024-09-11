@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -11,9 +14,10 @@
     "docx-preview": "^0.3.2",
     "dotenv": "^16.4.5",
     "mammoth": "^1.8.0",
-    "pdfjs-dist": "^4.5.136",
+    "pdfjs-dist": "^3.0.279",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
+    "react-doc-viewer": "^0.1.14",
     "react-dom": "^18.3.1",
     "react-loading-skeleton": "^3.4.0",
     "react-pdf": "^9.1.0",
@@ -48,5 +52,18 @@
   "description": "airs-face-repository",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "bourbon": "^7.3.0",
+    "sass": "^1.78.0"
+  },
+
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "modulePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
 }

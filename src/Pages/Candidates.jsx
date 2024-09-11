@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
@@ -9,27 +9,28 @@ import docs from "../assets/document.png";
 import Skeleton from "react-loading-skeleton";
 import { ResumeCard } from "../Components/ResumeCards/ResumeCard";
 import { BASE_URL } from "../config";
+import "../assets/scss/heart.scss";
 
 export const Candidates = () => {
   const [loader, setLoader] = useState(false);
-  const [count, setCount] = useState(4);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState();
   const [candiData, setCandiData] = useState([]);
+  const [checkedState, setCheckedState] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
   const lableRef = useRef();
-
-  const sortedCandiData = candiData.sort(
-    (a, b) => b.match_score - a.match_score
-  );
-
   const [jdValue, setJdValue] = useState({
     jd: "",
     filepath: "",
   });
 
+  const sortedCandiData = candiData.sort(
+    (a, b) => b.match_score - a.match_score
+  );
+
   const handleJdCandidates = async (pageNo) => {
     setPage(pageNo);
-    setCount(4);
     setLoader(true);
     const formData = new FormData();
     formData.append("filepath", jdValue.filepath);
@@ -43,13 +44,31 @@ export const Candidates = () => {
       );
       setCandiData(response.data.results);
       setPagination(response.data.pagination);
+      window.localStorage.setItem("candiData", JSON.stringify(response.data));
       setLoader(false);
+      const res = await axios.get(
+        `${BASE_URL}/api/v1/filter-resumes/shortlist-candidate?jd_path=${jdValue.filepath.name}`
+      );
+      setWishlist(res.data.resumes[0]);
+      window.localStorage.setItem("wishlist", JSON.stringify(res.data.resumes));
     } catch (error) {
       console.error(error);
       setLoader(false);
     }
   };
 
+  // let candiResume = JSON.parse(window.localStorage.getItem("candiData"));
+  // let wishelList = JSON.parse(window.localStorage.getItem("wishlist"));
+  // useEffect(() => {
+  //   if (candiResume) {
+  //     setCandiData(candiResume.results);
+  //   }
+  //   if (wishelList) {
+  //     setWishlist(wishelList[0]);
+  //   }
+  // }, []);
+
+  //handle jd file input
   const handleFile = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -57,6 +76,72 @@ export const Candidates = () => {
     }
     setJdValue((prev) => ({ ...prev, filepath: file }));
   };
+
+  //handle wishlist add and remove from the database
+  const handleWishList = async (id) => {
+    try {
+      const data = candiData.find((candi, i) => i === id);
+      const formDataa = new FormData();
+      formDataa.append("jd_path", jdValue.filepath.name);
+      formDataa.append("resume_path", data.filepath);
+      let jd = formDataa.get("jd_path");
+
+      if (jd !== "undefined") {
+        if (checkedState[id]) {
+          const response = await axios.post(
+            `${BASE_URL}/api/v1/filter-resumes/shortlist-candidate`,
+            formDataa
+          );
+          console.log(response.data);
+        } else {
+          const response = await axios.post(
+            `${BASE_URL}/api/v1/filter-resumes/remove-shortlisted-candidate`,
+            formDataa
+          );
+          console.log(response.data);
+        }
+      } else {
+        console.log("JD is not available");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedId !== null) {
+      handleWishList(selectedId);
+    }
+  }, [checkedState, selectedId]);
+
+  const toggleHeart = (id) => {
+    setCheckedState((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+
+    setSelectedId(id);
+  };
+
+  useEffect(() => {
+    let updatedCheckedState = {};
+    for (let i = 0; i < candiData.length; i++) {
+      updatedCheckedState[i] = false;
+    }
+
+    wishlist.forEach((elem) => {
+      const matchedElement = candiData.find(
+        (element) => elem === element.filepath
+      );
+
+      if (matchedElement) {
+        const index = candiData.indexOf(matchedElement);
+        updatedCheckedState[index] = true;
+      }
+    });
+
+    setCheckedState(updatedCheckedState);
+  }, [wishlist, candiData, jdValue]);
 
   return (
     <>
@@ -114,7 +199,16 @@ export const Candidates = () => {
           </div>
         ) : candiData.length > 0 ? (
           sortedCandiData.map((item, i) => {
-            return <ResumeCard item={item} key={item.id || i} />;
+            const isChecked = checkedState[i];
+            return (
+              <ResumeCard
+                key={i}
+                id={i}
+                item={item}
+                isChecked={isChecked}
+                onToggleHeart={() => toggleHeart(i)}
+              />
+            );
           })
         ) : (
           <div className="card">
@@ -134,7 +228,7 @@ export const Candidates = () => {
             </button>
           </div>
         )} */}
-        {pagination && (
+        {pagination && candiData.length > 1 && (
           <div className="pagination">
             <div className="container">
               <div className="prev">

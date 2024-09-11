@@ -7,20 +7,16 @@ import { BASE_URL } from "../../config";
 import Modal from "react-bootstrap/Modal";
 import FileViewer from "../pdfViewer/PdfViewer";
 
-export const ResumeCard = ({ item }) => {
+export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
   const [url, setUrl] = useState();
 
   const handleResume = (fileUrl) => {
     const newUrl = `${BASE_URL}` + "/" + fileUrl.filepath;
-    if (newUrl.endsWith(".pdf")) {
-      window.open(newUrl, "_blank");
-    } else {
-      setUrl(newUrl);
-      setFullscreen(true);
-      setShow(true);
-    }
+    setUrl(newUrl);
+    setFullscreen(true);
+    setShow(true);
   };
 
   return (
@@ -65,22 +61,44 @@ export const ResumeCard = ({ item }) => {
             )}
           </div>
         </div>
-        {/* <div className="skill">
-          <div className="left-title">
-            <span>EXPERIENCE</span>
-          </div>
-          <div>
-            <span>5 years</span>
-          </div>
-        </div> */}
         <div className="skill">
           <div className="left-title">
-            <span>MATCHING SCORE</span>
+            <span>Matched Skills</span>
+          </div>
+          <div>
+            <span>{item.matchedSkills ? item.matchedSkills : 0}</span>
+          </div>
+        </div>
+        <div className="skill">
+          <div className="left-title">
+            <span>Experience</span>
+          </div>
+          <div>
+            <span>{item.experience ? item.experience : 0} years</span>
+          </div>
+        </div>
+        <div className="skill">
+          <div className="left-title">
+            <span>Matching Score</span>
           </div>
           <div>
             <span>{item.match_score ? item.match_score.toFixed(2) : 0}%</span>
           </div>
         </div>
+        <div className="heart-container">
+            <div className="checkboxes-container">
+              <div className="control-group">
+                <input
+                  className="red-heart-checkbox"
+                  id={`red-check2-${id}`}
+                  type="checkbox"
+                  checked={isChecked || false}
+                  onChange={onToggleHeart}
+                />
+                <label htmlFor={`red-check2-${id}`}></label>
+              </div>
+            </div>
+          </div>
       </div>
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
         <FileViewer fileUrl={url} />
