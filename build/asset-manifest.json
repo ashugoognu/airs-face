@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.78b061bc.css",
+    "main.js": "/static/js/main.2aeeaeeb.js",
+    "static/media/nexticon.png": "/static/media/nexticon.52a6db1ecc38fd0a9660.png",
+    "index.html": "/index.html",
+    "main.78b061bc.css.map": "/static/css/main.78b061bc.css.map",
+    "main.2aeeaeeb.js.map": "/static/js/main.2aeeaeeb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.78b061bc.css",
+    "static/js/main.2aeeaeeb.js"
+  ]
+}
