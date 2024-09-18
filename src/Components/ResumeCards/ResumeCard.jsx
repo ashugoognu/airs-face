@@ -86,19 +86,19 @@ export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
           </div>
         </div>
         <div className="heart-container">
-            <div className="checkboxes-container">
-              <div className="control-group">
-                <input
-                  className="red-heart-checkbox"
-                  id={`red-check2-${id}`}
-                  type="checkbox"
-                  checked={isChecked || false}
-                  onChange={onToggleHeart}
-                />
-                <label htmlFor={`red-check2-${id}`}></label>
-              </div>
+          <div className="checkboxes-container">
+            <div className="control-group">
+              <input
+                className="red-heart-checkbox"
+                id={`red-check2-${id}`}
+                type="checkbox"
+                checked={isChecked || false}
+                onChange={onToggleHeart}
+              />
+              <label htmlFor={`red-check2-${id}`}></label>
             </div>
           </div>
+        </div>
       </div>
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
         <FileViewer fileUrl={url} />

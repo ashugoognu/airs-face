@@ -169,11 +169,11 @@
   cursor: pointer;
   font-weight: 600;
 }
+
 .candi-table .name:hover{
   color: rgb(14, 108, 248);
   cursor: pointer;
 }
-
 
 .create-jd .modal-body .row{
   display: flex;
@@ -184,7 +184,6 @@
   font-weight: 500;
   color: #006bc7;
 }
-
 
 .filtered-resume{
   width: 100%;
@@ -316,6 +315,7 @@
   padding: 7px 10px;
 }
 
+.cart .card .empty-string,
 .filtered-resume .card .empty-string{
   display: flex;
   flex-direction: column;
@@ -324,15 +324,18 @@
   padding: 20px 0;
 }
 
+.cart .card .empty-string img,
 .filtered-resume .card .empty-string img{
   width: 130px;
 }
 
+.cart .card .empty-string h4,
 .filtered-resume .card .empty-string h4{
   font-weight: 600;
   margin-top: 15px;
 }
 
+.cart .card .empty-string p,
 .filtered-resume .card .empty-string p{
   font-weight: 400;
 }
@@ -410,4 +413,43 @@
 
 
 
+/* jd cart css */
 
+.cart table tbody td span{
+  cursor: pointer;
+  color: #006AAE;
+}
+
+.cart .card .empty-string a{
+  color: #006AAE;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500;
+  border: 1px solid #006AAE;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+
+
+/* selected jd list modal */
+
+.jd-modal-list .modal-body p{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jd-modal-list .modal-body p span:hover{
+  color: #006bc7;
+}
+
+.jd-modal-list .modal-body p span img{
+  cursor: pointer;
+}
+
+.jd-modal-list .modal-body p span img:hover{
+  height: 22px;
+  width: 22px;
+  transition: all 0.3s ease-in-out;
+}

@@ -57,17 +57,6 @@ export const Candidates = () => {
     }
   };
 
-  // let candiResume = JSON.parse(window.localStorage.getItem("candiData"));
-  // let wishelList = JSON.parse(window.localStorage.getItem("wishlist"));
-  // useEffect(() => {
-  //   if (candiResume) {
-  //     setCandiData(candiResume.results);
-  //   }
-  //   if (wishelList) {
-  //     setWishlist(wishelList[0]);
-  //   }
-  // }, []);
-
   //handle jd file input
   const handleFile = (e) => {
     const file = e.target.files[0];
@@ -92,13 +81,13 @@ export const Candidates = () => {
             `${BASE_URL}/api/v1/filter-resumes/shortlist-candidate`,
             formDataa
           );
-          console.log(response.data);
+          
         } else {
           const response = await axios.post(
             `${BASE_URL}/api/v1/filter-resumes/remove-shortlisted-candidate`,
             formDataa
           );
-          console.log(response.data);
+          
         }
       } else {
         console.log("JD is not available");
@@ -129,7 +118,7 @@ export const Candidates = () => {
       updatedCheckedState[i] = false;
     }
 
-    wishlist.forEach((elem) => {
+    wishlist && wishlist.forEach((elem) => {
       const matchedElement = candiData.find(
         (element) => elem === element.filepath
       );
