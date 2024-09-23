@@ -19,6 +19,8 @@ export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
     setShow(true);
   };
 
+  console.log(item);
+
   return (
     <div className="card">
       <div className="top-details">
@@ -54,7 +56,11 @@ export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
           <div className="skills">
             {item.skills.length > 0 ? (
               item.skills.map((skill, i) => {
-                return <span key={i}> {skill} </span>;
+                if (item.matchedSkillsList.find((elem) => elem === skill)) {
+                  return <span key={i} className="matched-skills"> {skill} </span>;
+                } else {
+                  return <span key={i}> {skill} </span>;
+                }
               })
             ) : (
               <span> null </span>
@@ -66,7 +72,7 @@ export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
             <span>Matched Skills</span>
           </div>
           <div>
-            <span>{item.matchedSkills ? item.matchedSkills : 0}</span>
+            <span>{item.matchedSkillsCount ? item.matchedSkillsCount : 0}</span>
           </div>
         </div>
         <div className="skill">

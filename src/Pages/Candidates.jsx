@@ -26,7 +26,7 @@ export const Candidates = () => {
   });
 
   const sortedCandiData = candiData.sort(
-    (a, b) => b.matchedSkills - a.matchedSkills
+    (a, b) => b.matchedSkillsCount - a.matchedSkillsCount
   );
 
   const handleJdCandidates = async (pageNo) => {
@@ -45,6 +45,7 @@ export const Candidates = () => {
       setCandiData(response.data.results);
       setPagination(response.data.pagination);
       setLoader(false);
+      console.log(response.data);
       const res = await axios.get(
         `${BASE_URL}/api/v1/filter-resumes/shortlist-candidate?jd_path=${jdValue.filepath.name}`
       );

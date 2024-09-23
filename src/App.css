@@ -290,6 +290,10 @@
   font-size: 12px;
 }
 
+.filtered-resume .card .bottom-details .skill .skills .matched-skills{
+  background-color: rgb(255, 226, 10);
+}
+
 .filtered-resume .card .bottom-details .skill span{
   font-size: 13px;
 }
