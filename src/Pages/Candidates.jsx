@@ -26,7 +26,7 @@ export const Candidates = () => {
   });
 
   const sortedCandiData = candiData.sort(
-    (a, b) => b.match_score - a.match_score
+    (a, b) => b.matchedSkills - a.matchedSkills
   );
 
   const handleJdCandidates = async (pageNo) => {
@@ -44,13 +44,11 @@ export const Candidates = () => {
       );
       setCandiData(response.data.results);
       setPagination(response.data.pagination);
-      window.localStorage.setItem("candiData", JSON.stringify(response.data));
       setLoader(false);
       const res = await axios.get(
         `${BASE_URL}/api/v1/filter-resumes/shortlist-candidate?jd_path=${jdValue.filepath.name}`
       );
       setWishlist(res.data.resumes[0]);
-      window.localStorage.setItem("wishlist", JSON.stringify(res.data.resumes));
     } catch (error) {
       console.error(error);
       setLoader(false);
