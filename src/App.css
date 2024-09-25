@@ -1,39 +1,39 @@
 /* header section */
-.header{
+.header {
   padding: 20px 0;
 }
 
-.header .container{
+.header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header .container img{
+.header .container img {
   width: 180px;
 }
 
-.header .container .jd-cart{
+.header .container .jd-cart {
   width: 30px;
   cursor: pointer;
 }
 
 /* candidate view  */
-.candidate-resume .candidate-header{
+.candidate-resume .candidate-header {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.candidate-resume .candidate-header h2{
-  text-align: center; 
+.candidate-resume .candidate-header h2 {
+  text-align: center;
   margin-bottom: 50px;
   font-size: 45px;
   color: #006DB8;
   font-weight: 600;
 }
 
-.candidate-resume .jd-text-fields{
+.candidate-resume .jd-text-fields {
   height: 90px;
   background: #FFFFFF;
   box-shadow: 0px 1.09559px 16.7625px rgba(0, 0, 0, 0.25);
@@ -44,21 +44,21 @@
   width: 92% !important;
 }
 
-.candidate-resume .jd-text-fields #floatingTextarea2{
+.candidate-resume .jd-text-fields #floatingTextarea2 {
   height: 90px;
   border: none;
   border-radius: 20px;
 }
 
-.form-control:focus{
+.form-control:focus {
   box-shadow: none !important;
 }
 
-.candidate-resume .jd-text-fields .form-floating{
+.candidate-resume .jd-text-fields .form-floating {
   width: 74%;
 }
 
-.candidate-resume .jd-text-fields .jd-upload-file{
+.candidate-resume .jd-text-fields .jd-upload-file {
   width: 207px;
   height: 48px;
   background: #DAEAF3;
@@ -69,14 +69,16 @@
   padding: 0 20px;
   gap: 10px;
 }
-.candidate-resume .jd-text-fields .jd-upload-file img{
+
+.candidate-resume .jd-text-fields .jd-upload-file img {
   width: 23px;
 }
-.candidate-resume .jd-text-fields .jd-upload-file input{
+
+.candidate-resume .jd-text-fields .jd-upload-file input {
   display: none;
 }
 
-.candidate-resume .jd-text-fields .jd-upload-file label{
+.candidate-resume .jd-text-fields .jd-upload-file label {
   margin-bottom: 0;
   font-size: 16px;
   font-weight: 600;
@@ -86,19 +88,19 @@
   cursor: pointer;
 }
 
-.candidate-resume .jd-text-fields .find-btn img{
+.candidate-resume .jd-text-fields .find-btn img {
   width: 30px;
 }
 
-.candi-view .container .row .col-6{
+.candi-view .container .row .col-6 {
   padding: 10px;
 }
 
-.candi-view .container .card{
+.candi-view .container .card {
   padding: 20px;
 }
 
-.candi-view .container .card .candi-pic{
+.candi-view .container .card .candi-pic {
   width: 110px;
   height: 110px;
   display: flex;
@@ -109,12 +111,12 @@
   margin: auto;
 }
 
-.candi-view .container .card .candi-pic img{
+.candi-view .container .card .candi-pic img {
   border-radius: 50%;
   width: 100px;
 }
 
-.candi-view .container .card .candi-details{
+.candi-view .container .card .candi-details {
   display: flex;
   flex-direction: column;
 }
@@ -123,7 +125,7 @@
 .candi-view .container .card .candi-details .mobile,
 .candi-view .container .card .candi-details .email,
 .candi-view .container .card .candi-details .role,
-.candi-view .container .card .candi-details .skill{
+.candi-view .container .card .candi-details .skill {
   display: flex;
   gap: 10px;
 }
@@ -134,7 +136,7 @@
 .candi-view .container .card .candi-details .mobile span:first-child,
 .candi-view .container .card .candi-details .email span:first-child,
 .candi-view .container .card .candi-details .role span:first-child,
-.candi-view .container .card .candi-details .skill > span:first-child{
+.candi-view .container .card .candi-details .skill>span:first-child {
   font-weight: 500;
   color: #000000;
 }
@@ -144,48 +146,48 @@
 .candi-view .container .card .candi-details .mobile span:last-child,
 .candi-view .container .card .candi-details .email span:last-child,
 .candi-view .container .card .candi-details .role span:last-child,
-.candi-view .container .card .candi-details .skill span{
+.candi-view .container .card .candi-details .skill span {
   font-weight: 400;
   color: #828282;
 }
 
-.candi-view .container .card .candi-details .Resume span:last-child{
+.candi-view .container .card .candi-details .Resume span:last-child {
   cursor: pointer;
   color: blue;
 }
 
-.candi-view .container .card .candi-details .skill{
+.candi-view .container .card .candi-details .skill {
   width: 100%;
   height: auto;
 }
 
-.candi-view .container .card .candi-details .skill p{
+.candi-view .container .card .candi-details .skill p {
   width: 90%;
 }
 
 /* candidate table  */
-.candi-table .name{
+.candi-table .name {
   color: rgb(97, 156, 245);
   cursor: pointer;
   font-weight: 600;
 }
 
-.candi-table .name:hover{
+.candi-table .name:hover {
   color: rgb(14, 108, 248);
   cursor: pointer;
 }
 
-.create-jd .modal-body .row{
+.create-jd .modal-body .row {
   display: flex;
   row-gap: 20px;
 }
 
-.create-jd .modal-body .row .form-label{
+.create-jd .modal-body .row .form-label {
   font-weight: 500;
   color: #006bc7;
 }
 
-.filtered-resume{
+.filtered-resume {
   width: 100%;
   background-color: #006bc7;
   padding: 120px 50px;
@@ -194,67 +196,72 @@
   gap: 40px;
 }
 
-.filtered-resume .card{
+.filtered-resume .card {
   padding: 20px 25px;
   border-radius: 14px;
 }
 
-.filtered-resume .card .top-details{
+.filtered-resume .card .top-details {
   display: flex;
   align-items: center;
 }
 
-.filtered-resume .card .top-details .left{
+.filtered-resume .card .top-details .left {
   display: flex;
   align-items: center;
   gap: 40px;
   width: 20%;
 }
 
-.filtered-resume .card .top-details .left h3{
+.filtered-resume .card .top-details .left h3 {
   font-size: 22px;
   font-weight: 600;
+  cursor: pointer;
 }
 
-.filtered-resume .card .top-details .right{
+.filtered-resume .card .top-details .left h3:hover{
+  color: #006DB8;
+}
+
+.filtered-resume .card .top-details .right {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 80%;
 }
 
-.filtered-resume .card .top-details .right span{
+.filtered-resume .card .top-details .right span {
   display: flex;
   align-items: center;
   gap: 7px;
   font-size: 14px;
 }
 
-.filtered-resume .card .top-details .right .email{
+.filtered-resume .card .top-details .right .email {
   display: flex;
   align-items: center;
 }
 
-.filtered-resume .card .top-details img{
+.filtered-resume .card .top-details img {
   width: 17px;
   height: 17px;
 }
 
-.filtered-resume .card .top-details .right > div{
+.filtered-resume .card .top-details .right>div {
   display: flex;
   gap: 30px;
 }
 
-.filtered-resume .card .top-details .right .btn{
+.filtered-resume .card .top-details .right .btn {
   font-weight: 600;
   font-size: 16px;
 }
 
-.filtered-resume .card .top-details .right .btn:hover{
+.filtered-resume .card .top-details .right .btn:hover {
   color: #006AAE;
 }
 
-.filtered-resume .card .bottom-details{
+.filtered-resume .card .bottom-details {
   padding: 10px 0;
   display: flex;
   flex-direction: column;
@@ -262,15 +269,16 @@
   position: relative;
 }
 
-.filtered-resume .card .bottom-details .skill{
+.filtered-resume .card .bottom-details .skill {
   display: flex;
   flex-direction: row;
 }
 
-.filtered-resume .card .bottom-details .skill .left-title{
+.filtered-resume .card .bottom-details .skill .left-title {
   width: 20%;
 }
-.filtered-resume .card .bottom-details .skill .skills{
+
+.filtered-resume .card .bottom-details .skill .skills {
   width: 80%;
   display: flex;
   flex-wrap: wrap;
@@ -283,34 +291,34 @@
   flex: auto;
 }
 
-.filtered-resume .card .bottom-details .skill .skills span{
+.filtered-resume .card .bottom-details .skill .skills span {
   padding: 3px 10px;
   background-color: #BCD9E88C;
   border-radius: 3px;
   font-size: 12px;
 }
 
-.filtered-resume .card .bottom-details .skill .skills .matched-skills{
+.filtered-resume .card .bottom-details .skill .skills .matched-skills {
   background-color: rgb(255, 226, 10);
 }
 
-.filtered-resume .card .bottom-details .skill span{
+.filtered-resume .card .bottom-details .skill span {
   font-size: 13px;
 }
 
-.filtered-resume .card .bottom-details .skill .left-title span{
+.filtered-resume .card .bottom-details .skill .left-title span {
   font-weight: 500;
   font-size: 15px;
 }
 
-.filtered-resume .view-more{
+.filtered-resume .view-more {
   width: 100%;
   display: flex;
   justify-content: end;
   margin-top: 20px;
 }
 
-.filtered-resume .view-more .btn{
+.filtered-resume .view-more .btn {
   background-color: #fff;
   border-radius: 14px;
   color: #006AAE;
@@ -320,7 +328,7 @@
 }
 
 .cart .card .empty-string,
-.filtered-resume .card .empty-string{
+.filtered-resume .card .empty-string {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -329,22 +337,22 @@
 }
 
 .cart .card .empty-string img,
-.filtered-resume .card .empty-string img{
+.filtered-resume .card .empty-string img {
   width: 130px;
 }
 
 .cart .card .empty-string h4,
-.filtered-resume .card .empty-string h4{
+.filtered-resume .card .empty-string h4 {
   font-weight: 600;
   margin-top: 15px;
 }
 
 .cart .card .empty-string p,
-.filtered-resume .card .empty-string p{
+.filtered-resume .card .empty-string p {
   font-weight: 400;
 }
 
-.modal-title.resume-title{
+.modal-title.resume-title {
   width: 90%;
   font-size: 20px;
   font-weight: 600;
@@ -354,27 +362,27 @@
   justify-content: space-between;
 }
 
-.modal-title.resume-title div{
+.modal-title.resume-title div {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.modal-title.resume-title img{
+.modal-title.resume-title img {
   width: 25px;
   height: fit-content;
   color: #006AAE;
   cursor: pointer;
 }
 
-.filtered-resume .pagination .container{
+.filtered-resume .pagination .container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
 
-.filtered-resume .pagination .container button{
+.filtered-resume .pagination .container button {
   background-color: #fff;
   border: none;
   color: #006AAE;
@@ -386,26 +394,26 @@
   align-items: center;
 }
 
-.filtered-resume .pagination .container .prev button img{
+.filtered-resume .pagination .container .prev button img {
   width: 10px;
   height: 10px;
   rotate: 180deg;
 }
 
-.filtered-resume .pagination .container .prev button img:last-child{
+.filtered-resume .pagination .container .prev button img:last-child {
   margin-right: 7px;
 }
 
-.filtered-resume .pagination .container .next button img{
+.filtered-resume .pagination .container .next button img {
   width: 10px;
   height: 10px;
 }
 
-.filtered-resume .pagination .container .next button img:first-child{
+.filtered-resume .pagination .container .next button img:first-child {
   margin-left: 7px;
 }
 
-.filtered-resume .container span{
+.filtered-resume .container span {
   color: #006AAE;
   font-weight: 600;
   padding: 5px 10px;
@@ -415,16 +423,108 @@
 }
 
 
+/* resume edit form */
+
+.edit-title {
+  color: #006DB8 !important;
+}
+
+.resume-edit-form .row {
+  display: flex;
+  row-gap: 20px;
+  width: 100%;
+}
+
+.resume-edit-form .row .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resume-edit-form .row .form-group label {
+  font-weight: 500;
+  font-size: 15px;
+  color: #006AAE;
+}
+
+.resume-edit-form .row .form-group .ReactTags__tagInput {
+  width: 50%;
+}
+
+.resume-edit-form .row .form-group .ReactTags__tags {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.resume-edit-form .row .form-group .ReactTags__tags .ReactTags__tagInput .ReactTags__tagInputField {
+  width: 100%;
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.resume-edit-form .row .form-group .ReactTags__tags .ReactTags__tagInput .ReactTags__tagInputField:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #86b7fe;
+  outline: 0;
+}
+
+.resume-edit-form .row .form-group .ReactTags__selected {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.resume-edit-form .row .form-group .ReactTags__selected::after {
+  content: "";
+  flex: auto;
+}
+
+.resume-edit-form .row .form-group .ReactTags__selected .tag-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #006AAE;
+  border-radius: 20px;
+  padding: 2px 10px;
+}
+
+.resume-edit-form .row .form-group .ReactTags__selected .tag-wrapper .ReactTags__remove {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resume-edit-form .row .form-group .ReactTags__selected .tag-wrapper .ReactTags__remove svg {
+  fill: #006AAE;
+}
+
 
 
 /* jd cart css */
 
-.cart table tbody td span{
+.cart table tbody td span {
   cursor: pointer;
   color: #006AAE;
 }
 
-.cart .card .empty-string a{
+.cart .card .empty-string a {
   color: #006AAE;
   text-decoration: none;
   cursor: pointer;
@@ -438,22 +538,26 @@
 
 /* selected jd list modal */
 
-.jd-modal-list .modal-body p{
+.jd-modal-list .modal-body p {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.jd-modal-list .modal-body p span:hover{
+.jd-modal-list .modal-body p span:hover {
   color: #006bc7;
 }
 
-.jd-modal-list .modal-body p span img{
+.jd-modal-list .modal-body p span img {
   cursor: pointer;
 }
 
-.jd-modal-list .modal-body p span img:hover{
+.jd-modal-list .modal-body p span img:hover {
   height: 22px;
   width: 22px;
   transition: all 0.3s ease-in-out;
 }
+
+
+
+/* edit jd details modal */

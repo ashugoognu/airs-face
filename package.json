@@ -23,6 +23,7 @@
     "react-pdf": "^9.1.0",
     "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
+    "react-tag-input": "^6.10.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -57,7 +58,6 @@
     "bourbon": "^7.3.0",
     "sass": "^1.78.0"
   },
-
   "jest": {
     "coveragePathIgnorePatterns": [
       "/node_modules/"

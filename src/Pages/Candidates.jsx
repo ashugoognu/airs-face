@@ -45,7 +45,6 @@ export const Candidates = () => {
       setCandiData(response.data.results);
       setPagination(response.data.pagination);
       setLoader(false);
-      console.log(response.data);
       const res = await axios.get(
         `${BASE_URL}/api/v1/filter-resumes/shortlist-candidate?jd_path=${jdValue.filepath.name}`
       );
@@ -80,13 +79,11 @@ export const Candidates = () => {
             `${BASE_URL}/api/v1/filter-resumes/shortlist-candidate`,
             formDataa
           );
-          
         } else {
           const response = await axios.post(
             `${BASE_URL}/api/v1/filter-resumes/remove-shortlisted-candidate`,
             formDataa
           );
-          
         }
       } else {
         console.log("JD is not available");

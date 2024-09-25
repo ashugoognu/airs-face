@@ -6,11 +6,15 @@ import { BASE_URL } from "../../config";
 
 import Modal from "react-bootstrap/Modal";
 import FileViewer from "../pdfViewer/PdfViewer";
+import { EditJdDetails } from "../modal/EditJdDetails";
+import axios from "axios";
 
 export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [url, setUrl] = useState();
+  const [editDetails, setEditDetails] = useState();
 
   const handleResume = (fileUrl) => {
     const newUrl = `${BASE_URL}` + "/" + fileUrl.filepath;
@@ -19,12 +23,23 @@ export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
     setShow(true);
   };
 
-  console.log(item);
+  const handleEditModal = async (id) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/api/v1/filter-resumes/get-candidate-resume-details?id=${id}`
+      );
+      setEditDetails(response.data);
+      setShowEdit(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // window.localStorage.setItem("skillList", JSON.stringify(item.skills));
 
   return (
     <div className="card">
       <div className="top-details">
-        <div className="left">
+        <div className="left" onClick={(e) => handleEditModal(item.id)}>
           <h3>{item.sender_name} </h3>
         </div>
         <div className="right">
@@ -57,7 +72,12 @@ export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
             {item.skills.length > 0 ? (
               item.skills.map((skill, i) => {
                 if (item.matchedSkillsList.find((elem) => elem === skill)) {
-                  return <span key={i} className="matched-skills"> {skill} </span>;
+                  return (
+                    <span key={i} className="matched-skills">
+                      {" "}
+                      {skill}{" "}
+                    </span>
+                  );
                 } else {
                   return <span key={i}> {skill} </span>;
                 }
@@ -108,6 +128,9 @@ export const ResumeCard = ({ item, id, isChecked, onToggleHeart }) => {
       </div>
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
         <FileViewer fileUrl={url} />
+      </Modal>
+      <Modal show={showEdit} size="lg" onHide={() => setShowEdit(false)}>
+        <EditJdDetails item={editDetails} setShowEdit={setShowEdit} />
       </Modal>
     </div>
   );
